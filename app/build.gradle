@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "app.tetsukay.githubbrowser"
@@ -23,15 +24,37 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation deps.kotlin.stdlib
+    implementation deps.android.appcompat
+    implementation deps.android.core_ktx
+    implementation deps.android.constraint_layout
+    testImplementation deps.junit4.core
+    androidTestImplementation deps.atsl.ext_junit
+    androidTestImplementation deps.espresso.core
+
+    implementation deps.navigation.fragment_ktx
+    implementation deps.android.recyclerview
+    implementation deps.android.cardview
+    implementation deps.android.material
+    implementation deps.lifecycle.livedata_ktx
+    implementation deps.networking.retrofit.runtime
+    implementation deps.networking.retrofit.mock
+    implementation deps.networking.retrofit.converter_moshi
+    implementation deps.networking.mock_web_server
+    implementation deps.networking.moshi
+    implementation deps.networking.moshi_kotlin
+    kapt deps.networking.moshi_codegen
+    implementation deps.coroutines.android
+
 }

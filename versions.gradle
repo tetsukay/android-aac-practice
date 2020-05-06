@@ -1,0 +1,113 @@
+ext.deps = [:]
+def versions = [:]
+def deps = [:]
+
+// Project Core
+versions.kotlin = "1.3.70"
+versions.android_gradle_plugin = '3.6.2'
+versions.coroutines = "1.3.3"
+
+// Android
+versions.activity = '1.1.0'
+versions.appcompat = "1.2.0-alpha02"
+versions.arch_core = "2.1.0"
+versions.core_ktx = "1.2.0"
+versions.navigation = "2.3.0-alpha01"
+versions.constraint_layout = "2.0.0-alpha2"
+versions.material = "1.0.0"
+versions.cardview = "1.0.0"
+versions.recyclerview = "1.0.0"
+versions.lifecycle = "2.2.0"
+
+
+// JUnit
+versions.junit = "4.12"
+
+// Android Test
+versions.atsl_core = "1.2.0"
+versions.atsl_junit = "1.1.1"
+versions.atsl_rules = "1.2.0"
+versions.atsl_runner = "1.2.0"
+
+// Espressso
+versions.espresso = "3.2.0"
+
+// Networking
+versions.retrofit = "2.8.1"
+versions.moshi = "1.9.2"
+versions.mockwebserver = "3.8.1"
+
+ext.versions = versions
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+deps.kotlin = kotlin
+
+def coroutines = [:]
+coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+coroutines.test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+deps.coroutines = coroutines
+
+def android = [:]
+android.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+android.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
+android.activity_ktx = "androidx.activity:activity-ktx:$versions.activity"
+android.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+android.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+android.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+android.cardview = "androidx.cardview:cardview:$versions.cardview"
+android.material = "com.google.android.material:material:$versions.material"
+deps.android = android
+
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+lifecycle.livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+deps.lifecycle = lifecycle
+
+def navigation = [:]
+navigation.runtime = "androidx.navigation:navigation-runtime:$versions.navigation"
+navigation.runtime_ktx = "androidx.navigation:navigation-runtime-ktx:$versions.navigation"
+navigation.fragment = "androidx.navigation:navigation-fragment:$versions.navigation"
+navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.testing = "androidx.navigation:navigation-testing:$versions.navigation"
+navigation.ui = "androidx.navigation:navigation-ui:$versions.navigation"
+navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+deps.navigation = navigation
+
+def networking = [:]
+def retrofit = [:]
+networking.retrofit = retrofit
+networking.retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+networking.retrofit.converter_moshi = "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+networking.retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+networking.retrofit = retrofit
+networking.moshi = "com.squareup.moshi:moshi:$versions.moshi"
+networking.moshi_kotlin = "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+networking.moshi_codegen = "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
+networking.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
+deps.networking = networking
+
+def atsl = [:] // Android Test Suite Library?
+atsl.core = "androidx.test:core:$versions.atsl_core"
+atsl.ext_junit = "androidx.test.ext:junit:$versions.atsl_junit"
+atsl.runner = "androidx.test:runner:$versions.atsl_runner"
+atsl.rules = "androidx.test:rules:$versions.atsl_rules"
+deps.atsl = atsl
+
+def espresso = [:]
+espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+def junit4 = [:]
+junit4.core = "junit:junit:$versions.junit"
+deps.junit4 = junit4
+
+ext.deps = deps
