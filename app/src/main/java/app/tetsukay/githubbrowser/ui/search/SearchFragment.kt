@@ -11,12 +11,14 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import app.tetsukay.githubbrowser.R
 import app.tetsukay.githubbrowser.databinding.SearchFragmentBinding
 
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private lateinit var binding: SearchFragmentBinding
+    private val viewModel: SearchViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,9 +67,9 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     }
 
     private fun doSearch(v: View) {
-        val query = binding.input.text.toString()
         // Dismiss keyboard
         dismissKeyboard(v.windowToken)
+        viewModel.setQuery(binding.input.text.toString())
     }
 
     private fun dismissKeyboard(windowToken: IBinder) {
