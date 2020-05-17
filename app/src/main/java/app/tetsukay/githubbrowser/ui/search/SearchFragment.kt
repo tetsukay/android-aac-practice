@@ -12,12 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import app.tetsukay.githubbrowser.R
 import app.tetsukay.githubbrowser.databinding.SearchFragmentBinding
-import app.tetsukay.githubbrowser.ext.invisible
-import app.tetsukay.githubbrowser.ext.visible
-import app.tetsukay.githubbrowser.model.Status
 
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
@@ -43,19 +39,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         // Fragment自身ではなく、viewLifecycleOwnerを渡す（ライフサイクルの問題）
         // Detail: https://satoshun.github.io/2018/12/view_lifecycle/
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    binding.loadMoreBar.invisible()
-                }
-                Status.ERROR -> {
-                    binding.loadMoreBar.invisible()
-                }
-                Status.LOADING -> {
-                    binding.loadMoreBar.visible()
-                }
-            }
-        })
+        binding.viewModel = viewModel
 
         initSearchInputListener()
     }
