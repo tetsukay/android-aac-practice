@@ -3,7 +3,6 @@ package app.tetsukay.githubbrowser.ui.search
 import android.content.Context
 import android.os.Bundle
 import android.os.IBinder
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import app.tetsukay.githubbrowser.R
 import app.tetsukay.githubbrowser.databinding.SearchFragmentBinding
+import app.tetsukay.githubbrowser.ext.invisible
+import app.tetsukay.githubbrowser.ext.visible
+import app.tetsukay.githubbrowser.model.Status
 
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
@@ -42,7 +44,17 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         // Detail: https://satoshun.github.io/2018/12/view_lifecycle/
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            Log.i("SearchFragment", it.toString())
+            when (it.status) {
+                Status.SUCCESS -> {
+                    binding.loadMoreBar.invisible()
+                }
+                Status.ERROR -> {
+                    binding.loadMoreBar.invisible()
+                }
+                Status.LOADING -> {
+                    binding.loadMoreBar.visible()
+                }
+            }
         })
 
         initSearchInputListener()
