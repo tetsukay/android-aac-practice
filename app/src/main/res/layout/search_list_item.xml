@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data></data>
+
+    <!-- cardUseCompatPaddingは古い端末との互換性を向上する。ApiLevel 21以上でアプリを組む場合はたぶん不要 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"></androidx.cardview.widget.CardView>
 
 
 </layout>
