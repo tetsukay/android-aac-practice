@@ -3,6 +3,7 @@ package app.tetsukay.githubbrowser.ui.search
 import android.content.Context
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import app.tetsukay.githubbrowser.R
 import app.tetsukay.githubbrowser.databinding.SearchFragmentBinding
 
@@ -39,6 +41,9 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         // Fragment自身ではなく、viewLifecycleOwnerを渡す（ライフサイクルの問題）
         // Detail: https://satoshun.github.io/2018/12/view_lifecycle/
         binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
+            Log.i("SearchFragment", it.toString())
+        })
 
         initSearchInputListener()
     }
