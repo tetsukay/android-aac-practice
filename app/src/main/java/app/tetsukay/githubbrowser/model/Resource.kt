@@ -3,7 +3,7 @@ package app.tetsukay.githubbrowser.model
 /**
  * ステータスと一緒に値を扱うクラス
  */
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+data class Resource<out T>(val status: Status, val data: T?, val message: String? = null) {
     companion object {
         fun <T> loading(data: T?): Resource<T> = Resource(Status.LOADING, data, null)
         fun <T> success(data: T?): Resource<T> = Resource(Status.SUCCESS, data, null)
