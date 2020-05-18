@@ -12,8 +12,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import app.tetsukay.githubbrowser.R
 import app.tetsukay.githubbrowser.databinding.SearchFragmentBinding
+import app.tetsukay.githubbrowser.model.Status
 
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
@@ -40,6 +42,12 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         // Detail: https://satoshun.github.io/2018/12/view_lifecycle/
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.repoList.adapter = SearchAdapter()
+        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
+            if (it.status == Status.SUCCESS) {
+                (binding.repoList.adapter as SearchAdapter).setData(requireNotNull(it.data).items)
+            }
+        })
 
         initSearchInputListener()
     }
