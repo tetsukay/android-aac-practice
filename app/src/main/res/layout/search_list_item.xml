@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="repo"
+            type="app.tetsukay.githubbrowser.model.GitHubRepo" />
+    </data>
 
     <!-- cardUseCompatPaddingは古い端末との互換性を向上する。ApiLevel 21以上でアプリを組む場合はたぶん不要 -->
     <androidx.cardview.widget.CardView
@@ -21,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="16dp"
+                android:text="@{repo.name}"
                 app:layout_constraintStart_toEndOf="@+id/repo_stars"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="repository name" />
@@ -32,6 +38,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:text="@{repo.description}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/repo_name"
@@ -45,6 +52,7 @@
                 android:layout_marginTop="@dimen/default_margin"
                 android:drawableStart="@android:drawable/btn_star"
                 android:gravity="center"
+                android:text="@{repo.stars}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="5" />
